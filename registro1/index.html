@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Registro de Constancias — Verificación</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEAE0;
+  --paper-card:#F8F4EA;
+  --ink:#1E2A38;
+  --ink-soft:#5B6672;
+  --rule:#C9BFA8;
+  --stamp:#A23B2E;
+  --brass:#8A6A2F;
+  --focus:#2F5E8C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14181E; --paper-card:#1D232B; --ink:#E8E2D3; --ink-soft:#A9A292;
+    --rule:#3A3E33; --stamp:#D3695A; --brass:#C9A227; --focus:#7FB0E0;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14181E; --paper-card:#1D232B; --ink:#E8E2D3; --ink-soft:#A9A292;
+  --rule:#3A3E33; --stamp:#D3695A; --brass:#C9A227; --focus:#7FB0E0;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;}
+body{background:var(--paper); color:var(--ink); font-family:'Source Sans 3', system-ui, sans-serif; line-height:1.55;}
+.wrap{max-width:640px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
+header{border-bottom:2px solid var(--ink); padding-bottom:1.1rem; margin-bottom:1.75rem;}
+h1{font-family:'Source Serif 4', Georgia, serif; font-weight:700; font-size:1.55rem; margin:0 0 0.2rem;}
+header p{margin:0; color:var(--ink-soft); font-size:0.95rem;}
+.card{background:var(--paper-card); border:1px solid var(--rule); border-radius:2px; padding:1.5rem;}
+form{display:flex; gap:0.6rem;}
+input[type=text]{flex:1; font-family:'IBM Plex Mono', monospace; font-size:1rem; padding:0.6rem 0.7rem; border:1px solid var(--rule); border-radius:2px; background:var(--paper); color:var(--ink);}
+input:focus-visible, button:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+button{font-family:'Source Sans 3', sans-serif; font-weight:700; font-size:0.95rem; background:var(--ink); color:var(--paper); border:none; padding:0.7rem 1.3rem; border-radius:2px; cursor:pointer;}
+.help{color:var(--ink-soft); font-size:0.85rem; margin-top:0.6rem;}
+.stamp{margin-top:1.5rem; border:1px solid var(--rule); padding:1.25rem 1.4rem; border-radius:2px; background:var(--paper-card);}
+.stamp__badge{display:inline-block; font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:0.85rem; letter-spacing:0.08em; padding:0.3rem 0.6rem; border:2px solid var(--stamp); color:var(--stamp); border-radius:2px; transform:rotate(-1.5deg); margin-bottom:1rem;}
+.stamp--no .stamp__badge{border-color:var(--ink-soft); color:var(--ink-soft);}
+.stamp__details{margin:0; display:grid; gap:0.6rem;}
+.stamp__details div{display:flex; justify-content:space-between; gap:1rem; border-bottom:1px dotted var(--rule); padding-bottom:0.4rem;}
+.stamp__details dt{color:var(--ink-soft); font-size:0.85rem;}
+.stamp__details dd{margin:0; text-align:right; font-weight:600;}
+footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); color:var(--ink-soft); font-size:0.82rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="inst-name">Registro de constancias</h1>
+    <p>Verificación pública de constancias emitidas</p>
+  </header>
+
+  <div class="card">
+    <form id="verify-form">
+      <input type="text" id="folio-input" placeholder="Folio, p. ej. AC-2026-0001" autocomplete="off" />
+      <button type="submit">Verificar</button>
+    </form>
+    <p class="help">Escribe el folio impreso en la constancia, o escanea el código QR del documento.</p>
+    <div id="verify-result"></div>
+  </div>
+
+  <footer>Este documento verifica que un folio fue emitido por la institución indicada. No constituye un aval oficial de ninguna autoridad educativa o laboral.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  var DATA = {institucion: "", records: []};
+
+  function renderVerify(folioRaw){
+    var el = document.getElementById('verify-result');
+    var folio = (folioRaw || '').trim();
+    if (!folio){ el.innerHTML = ''; return; }
+    var rec = DATA.records.find(function(r){
+      return r.folio.toUpperCase() === folio.toUpperCase();
+    });
+    if (rec){
+      el.innerHTML =
+        '<div class="stamp stamp--ok">' +
+          '<div class="stamp__badge">AUTÉNTICO</div>' +
+          '<dl class="stamp__details">' +
+            '<div><dt>Folio</dt><dd>' + escapeHtml(rec.folio) + '</dd></div>' +
+            '<div><dt>Nombre</dt><dd>' + escapeHtml(rec.nombre) + '</dd></div>' +
+            '<div><dt>Curso</dt><dd>' + escapeHtml(rec.curso) + '</dd></div>' +
+            '<div><dt>Horas</dt><dd>' + escapeHtml(rec.horas) + '</dd></div>' +
+            '<div><dt>Fecha de emisión</dt><dd>' + escapeHtml(rec.fecha) + '</dd></div>' +
+            '<div><dt>Institución</dt><dd>' + escapeHtml(DATA.institucion || 'Sin registrar') + '</dd></div>' +
+          '</dl>' +
+        '</div>';
+    } else {
+      el.innerHTML =
+        '<div class="stamp stamp--no">' +
+          '<div class="stamp__badge">NO ENCONTRADO</div>' +
+          '<p>No existe ningún registro con el folio <span>' + escapeHtml(folio) + '</span>. Verifica que esté escrito correctamente.</p>' +
+        '</div>';
+    }
+  }
+
+  fetch('./data.json', {cache: 'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(json){
+      DATA = json && json.records ? json : DATA;
+      document.getElementById('inst-name').textContent = DATA.institucion || 'Registro de constancias';
+      var params = new URLSearchParams(location.search);
+      var initialFolio = params.get('folio');
+      if (initialFolio){
+        document.getElementById('folio-input').value = initialFolio;
+        renderVerify(initialFolio);
+      }
+    })
+    .catch(function(){
+      document.getElementById('verify-result').innerHTML =
+        '<p class="help">No se pudo cargar el registro de constancias (data.json). Verifica que el archivo exista junto a esta página.</p>';
+    });
+
+  document.getElementById('verify-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    renderVerify(document.getElementById('folio-input').value);
+  });
+})();
+</script>
+</body>
+</html>
