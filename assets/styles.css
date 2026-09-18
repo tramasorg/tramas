@@ -1,4 +1,5 @@
 :root{
+  color-scheme: light;
   --color-bg:#FFFFFF;
   --color-text:#1B2A41;
   --color-accent:#1B2A41;
@@ -10,18 +11,6 @@
   --font-body:'Work Sans', system-ui, -apple-system, sans-serif;
   --radius-md:8px;
   --shadow-md:0 4px 14px rgba(27,42,65,0.14);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --color-bg:#181C1F; --color-text:#EDEAE0; --color-divider:#333940;
-    --color-accent:#EDEAE0; --color-accent-700:#FFFFFF;
-    --color-accent-2:#D98071; --color-accent-2-700:#E39A8D;
-  }
-}
-:root[data-theme="dark"]{
-  --color-bg:#181C1F; --color-text:#EDEAE0; --color-divider:#333940;
-  --color-accent:#EDEAE0; --color-accent-700:#FFFFFF;
-  --color-accent-2:#D98071; --color-accent-2-700:#E39A8D;
 }
 
 *{box-sizing:border-box;}
