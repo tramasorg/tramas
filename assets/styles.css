@@ -1,5 +1,15 @@
+/* ============================================================
+   Tramas Escucha a Víctimas de Violencia, A.C.
+   Hoja de estilos única del sitio.
+
+   Orden: 1 tokens · 2 base · 3 layout · 4 navegación ·
+          5 secciones y texto · 6 componentes · 7 movimiento
+   ============================================================ */
+
+/* ---- 1. Tokens ------------------------------------------- */
 :root{
   color-scheme: light;
+
   --color-bg:#FFFFFF;
   --color-text:#1B2A41;
   --color-accent:#1B2A41;
@@ -7,12 +17,28 @@
   --color-accent-2:#A6392C;
   --color-accent-2-700:#8A2E23;
   --color-divider:#E1DDD0;
+
+  /* Texto atenuado, por niveles */
+  --color-text-80:color-mix(in srgb, var(--color-text) 82%, transparent);
+  --color-text-70:color-mix(in srgb, var(--color-text) 78%, transparent);
+  --color-text-60:color-mix(in srgb, var(--color-text) 70%, transparent);
+  --color-text-50:color-mix(in srgb, var(--color-text) 60%, transparent);
+
   --font-heading:'Fraunces', Georgia, serif;
   --font-body:'Work Sans', system-ui, -apple-system, sans-serif;
+
   --radius-md:8px;
   --shadow-md:0 4px 14px rgba(27,42,65,0.14);
+
+  --ancho-maximo:1040px;
+  --margen-lateral:24px;
+
+  /* Espacio que el botón "Salir" (fijo, arriba a la derecha) necesita
+     para no encimarse con la navegación en pantallas anchas. */
+  --espacio-salida:130px;
 }
 
+/* ---- 2. Base --------------------------------------------- */
 *{box-sizing:border-box;}
 html,body{margin:0;}
 body{
@@ -27,19 +53,147 @@ a{color:var(--color-accent); text-decoration:none;}
 a:hover{color:var(--color-accent-700);}
 :focus-visible{outline:2px solid var(--color-accent); outline-offset:3px;}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-
-/* ---- nav ---- */
-nav.nav{display:flex; align-items:center; gap:28px; list-style:none;}
-nav.nav a:not(.btn){
-  font-family:var(--font-body); font-size:14px; font-weight:500; color:var(--color-text);
+/* ---- 3. Layout ------------------------------------------- */
+.shell{position:relative; min-height:100vh;}
+.container{
+  max-width:var(--ancho-maximo); margin:0 auto;
+  padding-inline:var(--margen-lateral);
 }
-nav.nav a[aria-current="page"]:not(.btn){
+.site-header{padding-top:24px;}
+.site-footer{padding:32px 0 40px; border-top:1px solid var(--color-divider);}
+.site-footer__row{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  gap:24px; flex-wrap:wrap;
+}
+.site-footer__links{display:flex; gap:24px; flex-wrap:wrap; font-size:14px;}
+.site-footer__logo{height:40px; width:auto;}
+.site-footer__legal{font-size:12px; color:var(--color-text-50); margin:20px 0 0; max-width:60ch;}
+.footer-fine{font-size:12px; color:var(--color-text-50); margin:8px 0 0; max-width:60ch;}
+.footer-fine a{text-decoration:underline;}
+
+/* ---- 4. Navegación --------------------------------------- */
+.site-nav{
+  display:flex; align-items:center; flex-wrap:wrap; gap:28px;
+  padding:0 var(--espacio-salida) 20px 0;
+  border-bottom:1px solid var(--color-divider);
+}
+.site-nav__brand{display:flex; align-items:center; margin-right:auto;}
+.site-nav__logo{height:56px; width:auto; display:block;}
+.site-nav__links{
+  display:flex; align-items:center; gap:28px;
+  list-style:none; margin:0; padding:0;
+}
+.site-nav__links a:not(.btn){font-size:14px; font-weight:500; color:var(--color-text);}
+.site-nav__links a[aria-current="page"]:not(.btn){
   color:var(--color-accent);
-  box-shadow:inset 0 -2px 0 0 var(--color-accent) !important;
+  box-shadow:inset 0 -2px 0 0 var(--color-accent);
+}
+/* El botón hamburguesa solo existe en pantallas angostas. */
+.site-nav__toggle{display:none;}
+
+@media (max-width:820px){
+  /* El botón "Salir" pasa a ocupar su propio renglón arriba, así que la
+     navegación ya no necesita reservarle espacio a la derecha. */
+  :root{--espacio-salida:0px;}
+  .site-header{padding-top:60px;}
+
+  .site-nav{gap:16px; padding-bottom:16px;}
+  .site-nav__logo{height:44px;}
+
+  .site-nav__toggle{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-body); font-size:14px; font-weight:600;
+    color:var(--color-text); background:transparent;
+    border:1px solid var(--color-divider); border-radius:var(--radius-md);
+    padding:9px 14px; cursor:pointer;
+  }
+  .site-nav__burger{
+    position:relative; display:block; width:16px; height:2px;
+    background:currentColor;
+  }
+  .site-nav__burger::before,
+  .site-nav__burger::after{
+    content:""; position:absolute; left:0; width:16px; height:2px; background:currentColor;
+  }
+  .site-nav__burger::before{top:-5px;}
+  .site-nav__burger::after{top:5px;}
+
+  .site-nav__links{
+    display:flex; flex-direction:column; align-items:stretch; gap:0;
+    flex-basis:100%; order:3;
+    border-top:1px solid var(--color-divider); margin-top:4px;
+  }
+  /* Solo se colapsa cuando nav.js confirmó estar activo (mejora progresiva):
+     sin JavaScript la lista queda visible y el menú sigue siendo usable. */
+  .site-nav--js .site-nav__links{display:none;}
+  .site-nav--js.site-nav--abierto .site-nav__links{display:flex;}
+  .site-nav__links li{border-bottom:1px solid var(--color-divider);}
+  .site-nav__links li:last-child{border-bottom:0; padding:14px 0 4px;}
+  .site-nav__links a:not(.btn){display:block; padding:14px 2px; font-size:16px;}
+  .site-nav__links a[aria-current="page"]:not(.btn){box-shadow:none; font-weight:700;}
+  .site-nav__links .btn{width:100%;}
 }
 
-/* ---- buttons ---- */
+@media (max-width:640px){
+  :root{--margen-lateral:16px;}
+}
+
+/* ---- 5. Secciones y texto -------------------------------- */
+.section{
+  padding:clamp(40px,6vw,64px) 0;
+  border-top:1px solid var(--color-divider);
+  text-align:center;
+}
+.section--hero{
+  padding:clamp(48px,8vw,88px) 0 clamp(40px,6vw,64px);
+  border-top:0;
+}
+.section--compacta{padding:clamp(36px,5vw,56px) 0;}
+.section--final{padding-bottom:clamp(56px,8vw,96px);}
+.section--sin-aire-arriba{padding-top:0;}
+
+.eyebrow{
+  font-weight:600; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--color-text-60); margin:0 0 16px;
+}
+.title{
+  font-size:clamp(38px,7vw,64px); line-height:1.04; letter-spacing:-0.02em;
+  margin:0 auto 24px; max-width:16ch;
+}
+.title--portada{font-size:clamp(38px,7vw,72px);}
+.lead{
+  font-size:clamp(17px,2vw,19px); line-height:1.6;
+  color:var(--color-text-70); max-width:60ch; margin:0 auto;
+}
+.lead--con-aire{margin-bottom:28px;}
+.section__title{font-size:clamp(24px,3vw,32px); margin:0 0 24px;}
+.section__title--con-aire{margin-bottom:36px;}
+.subtitulo{font-size:22px; margin:0 0 16px;}
+
+.prose{font-size:16px; line-height:1.65; color:var(--color-text-80); max-width:60ch; margin:0 auto;}
+.prose + .prose{margin-top:20px;}
+.prose--angosto{max-width:56ch;}
+.prose--muy-angosto{max-width:52ch;}
+
+.note{
+  font-size:14px; font-style:italic; color:var(--color-text-60);
+  border-left:2px solid var(--color-accent-2); padding-left:16px;
+  max-width:52ch; margin:0 auto; text-align:left;
+}
+.quote{
+  font-family:var(--font-heading); font-style:italic; font-weight:400;
+  font-size:clamp(22px,2.6vw,30px); line-height:1.5; letter-spacing:-0.01em;
+  max-width:34ch; margin:0 auto 24px;
+}
+.lista{
+  font-size:16px; line-height:1.65; color:var(--color-text-80);
+  max-width:60ch; margin:0 auto 14px; padding-left:0; list-style-position:inside;
+}
+
+/* ---- 6. Componentes -------------------------------------- */
+.actions{display:flex; gap:16px; flex-wrap:wrap; justify-content:center;}
+.actions--suelta{margin-top:20px;}
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   font-family:var(--font-body); font-weight:600; font-size:14px;
@@ -51,27 +205,36 @@ nav.nav a[aria-current="page"]:not(.btn){
 .btn-ghost{background:transparent; color:var(--color-text); border-color:var(--color-divider);}
 .btn-ghost:hover{border-color:var(--color-accent); color:var(--color-accent);}
 
-/* ---- cards (contact info, colaboradores) ---- */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:36px 48px;}
+.grid--tarjetas{grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
+.grid--personas{grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;}
+.grid--apilado{gap:16px; grid-template-columns:1fr;}
+.grid--con-aire{padding-top:clamp(36px,5vw,56px); margin-bottom:28px;}
+
+.feature__title{font-family:var(--font-body); font-weight:600; font-size:18px; margin:0 0 8px;}
+.feature__text{font-size:15px; line-height:1.6; color:var(--color-text-70); margin:0 auto; max-width:40ch;}
+.feature__text--ancho{max-width:44ch;}
+
+/* Bloques de servicio separados por una línea */
+.service{
+  padding-top:clamp(28px,4vw,40px); margin-top:clamp(28px,4vw,40px);
+  border-top:1px solid var(--color-divider);
+}
+.service:first-child{padding-top:clamp(36px,5vw,56px); margin-top:0; border-top:0;}
+.service__title{font-size:20px; margin:0 0 10px;}
+
 .card{
   text-align:left; background:var(--color-bg); border:1px solid var(--color-divider);
   border-radius:var(--radius-md); padding:18px 20px;
 }
 .card-kicker{
-  font-family:var(--font-body); font-weight:600; font-size:12px; letter-spacing:0.06em;
-  text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 60%, transparent);
-  margin-bottom:6px;
+  font-weight:600; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--color-text-50); margin:0 0 6px;
 }
-.card-title{
-  display:block; font-family:var(--font-body); font-weight:600; font-size:17px; color:var(--color-text);
-}
+.card-title{display:block; font-weight:600; font-size:17px; color:var(--color-text);}
 .card-body{font-size:14px; color:color-mix(in srgb, var(--color-text) 75%, transparent);}
 
-@media (max-width:640px){
-  header[style]{padding-left:16px !important; padding-right:16px !important;}
-  main[style]{padding-left:16px !important; padding-right:16px !important;}
-}
-
-/* ---- salida rápida (botón "Salir") ---- */
+/* Botón de salida rápida. Ver assets/salida-segura.js */
 .exit{
   position:fixed; top:16px; right:16px; z-index:50;
   display:inline-flex; align-items:center;
@@ -82,11 +245,18 @@ nav.nav a[aria-current="page"]:not(.btn){
   border-radius:var(--radius-md); box-shadow:var(--shadow-md);
 }
 .exit:hover{background:var(--color-accent-2); color:var(--color-bg);}
-.footer-fine{
-  font-size:12px; margin:8px 0 0; max-width:60ch;
-  color:color-mix(in srgb, var(--color-text) 60%, transparent);
+
+.vacio{font-size:16px; font-style:italic; color:var(--color-text-60); grid-column:1/-1; margin:0;}
+
+/* ---- 7. Movimiento -------------------------------------- */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
 }
-.footer-fine a{text-decoration:underline;}
+.reveal{animation:fadeUp .6s ease both;}
+.reveal-2{animation:fadeUp .6s ease .08s both;}
+.reveal-3{animation:fadeUp .6s ease .16s both;}
+.reveal-4{animation:fadeUp .6s ease .24s both;}
 
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{
@@ -94,3 +264,4 @@ nav.nav a[aria-current="page"]:not(.btn){
     transition-duration:0.01ms !important; scroll-behavior:auto !important;
   }
 }
+.card-body--rol{font-style:italic; margin:4px 0 0;}

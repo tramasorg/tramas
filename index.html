@@ -12,82 +12,89 @@
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<div style="position:relative;min-height:100vh;">
+<div class="shell">
   <a class="exit" href="https://www.google.com/" rel="noreferrer" data-salida title="Salir de este sitio (o pulsa Esc tres veces)">Salir ✕</a>
 
-  <header style="max-width:1040px;margin:0 auto;padding:24px 24px 0;">
-    <nav class="nav" style="padding:0 140px 20px 0;border-bottom:1px solid var(--color-divider);flex-wrap:wrap;">
-      <a href="index.html" style="display:flex;align-items:center;margin-right:auto;"><img src="assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C." style="height:56px;width:auto;display:block;"></a>
-      <a href="index.html" aria-current="page">Inicio</a>
-      <a href="quienes-somos.html">Quiénes somos</a>
-      <a href="servicios.html">Qué hacemos</a>
-      <a href="circulos-de-formacion.html">Formación</a>
-      <a href="red-de-acompanamiento.html">Red</a>
-      <a class="btn btn-primary" href="contacto.html">Contáctanos</a>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="site-nav__brand" href="index.html"><img class="site-nav__logo" src="assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C."></a>
+        <ul class="site-nav__links">
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="quienes-somos.html">Quiénes somos</a></li>
+          <li><a href="servicios.html">Qué hacemos</a></li>
+          <li><a href="circulos-de-formacion.html">Formación</a></li>
+          <li><a href="red-de-acompanamiento.html">Red</a></li>
+          <li><a class="btn btn-primary" href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main style="max-width:1040px;margin:0 auto;padding:0 24px;">
-    <section style="padding:clamp(48px,8vw,88px) 0 clamp(40px,6vw,64px);text-align:center;">
-      <p style="font-family:var(--font-body);font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:0 0 16px;animation:fadeUp .6s ease both;">Tramas Escucha a Víctimas de Violencia, A.C.</p>
-      <h1 style="font-size:clamp(38px,7vw,72px);line-height:1.04;letter-spacing:-0.02em;margin:0 auto 24px;max-width:16ch;animation:fadeUp .6s ease .08s both;">Escucha a víctimas de violencia</h1>
-      <p style="font-size:clamp(17px,2vw,19px);line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);max-width:56ch;margin:0 auto 28px;animation:fadeUp .6s ease .16s both;">Acompañamos a personas que han vivido violencia en su acceso a la justicia, en su proceso terapéutico y en la reconstrucción de su proyecto de vida.</p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s ease .24s both;">
+  <main class="container">
+    <section class="section section--hero">
+      <p class="eyebrow reveal">Tramas Escucha a Víctimas de Violencia, A.C.</p>
+      <h1 class="title title--portada reveal-2">Escucha a víctimas de violencia</h1>
+      <p class="lead lead--con-aire reveal-3">Acompañamos a personas que han vivido violencia en su acceso a la justicia, en su proceso terapéutico y en la reconstrucción de su proyecto de vida.</p>
+      <div class="actions reveal-4">
         <a class="btn btn-primary" href="servicios.html">Nuestros servicios</a>
         <a class="btn btn-ghost" href="contacto.html">Contáctanos</a>
       </div>
     </section>
 
-    <section style="padding:clamp(40px,6vw,64px) 0;border-top:1px solid var(--color-divider);text-align:center;">
-      <h2 style="font-size:clamp(24px,3vw,32px);margin:0 0 36px;">Cómo acompañamos</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px 48px;">
+    <section class="section">
+      <h2 class="section__title section__title--con-aire">Cómo acompañamos</h2>
+      <div class="grid">
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Asesoría psicosocial</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Orientación en el proceso jurídico para quienes buscan acceder a la justicia.</p>
+          <h3 class="feature__title">Asesoría psicosocial</h3>
+          <p class="feature__text">Orientación en el proceso jurídico para quienes buscan acceder a la justicia.</p>
         </div>
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Acompañamiento terapéutico</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Intervención de bajo costo mientras la persona continúe con su proceso jurídico abierto y en vías de resolución.</p>
+          <h3 class="feature__title">Acompañamiento terapéutico</h3>
+          <p class="feature__text">Intervención de bajo costo mientras la persona continúe con su proceso jurídico abierto y en vías de resolución.</p>
         </div>
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Grupos de contención</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Espacios de sostén emocional como Contacto Cero y Círculo (De)construcción Amorosa.</p>
+          <h3 class="feature__title">Grupos de contención</h3>
+          <p class="feature__text">Espacios de sostén emocional como Contacto Cero y Círculo (De)construcción Amorosa.</p>
         </div>
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Clínica Comunitaria Tramas</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Acompañamiento comunitario bajo el Meta Modelo Eco2.</p>
+          <h3 class="feature__title">Clínica Comunitaria Tramas</h3>
+          <p class="feature__text">Acompañamiento comunitario bajo el Meta Modelo Eco2.</p>
         </div>
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Círculos de Formación</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Formación para acompañantes de víctimas de violencia, presencial y en línea.</p>
+          <h3 class="feature__title">Círculos de Formación</h3>
+          <p class="feature__text">Formación para acompañantes de víctimas de violencia, presencial y en línea.</p>
         </div>
         <div>
-          <h3 style="font-family:var(--font-body);font-weight:600;font-size:18px;margin:0 0 8px;">Red de acompañamiento</h3>
-          <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 auto;max-width:40ch;">Un puente ético hacia profesionales de la escucha y la terapia.</p>
+          <h3 class="feature__title">Red de acompañamiento</h3>
+          <p class="feature__text">Un puente ético hacia profesionales de la escucha y la terapia.</p>
         </div>
       </div>
     </section>
 
-    <section style="padding:clamp(40px,6vw,72px) 0 clamp(56px,8vw,96px);border-top:1px solid var(--color-divider);text-align:center;">
-      <blockquote style="font-family:var(--font-heading);font-style:italic;font-weight:400;font-size:clamp(22px,2.6vw,30px);line-height:1.5;letter-spacing:-0.01em;max-width:34ch;margin:0 auto 24px;">Una trama que sostiene, hilo por hilo, tanto a quien busca justicia como a quien se prepara para acompañar ese camino.</blockquote>
+    <section class="section section--final">
+      <blockquote class="quote">Una trama que sostiene, hilo por hilo, tanto a quien busca justicia como a quien se prepara para acompañar ese camino.</blockquote>
       <a class="btn btn-ghost" href="quienes-somos.html">Quiénes somos</a>
     </section>
   </main>
 
-  <footer style="max-width:1040px;margin:0 auto;padding:32px 24px 40px;border-top:1px solid var(--color-divider);">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;">
-      <a href="index.html"><img src="assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C." style="height:40px;width:auto;"></a>
-      <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:14px;">
-        <a href="mailto:contacto@tramasevv.com">contacto@tramasevv.com</a>
-        <a href="tel:+525662692437">+52 56 6269 2437</a>
-        <a href="quienes-somos.html">Quiénes somos</a>
-        <a href="red-de-acompanamiento.html">Red de acompañamiento</a>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__row">
+        <a href="index.html"><img class="site-footer__logo" src="assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C."></a>
+        <div class="site-footer__links">
+          <a href="mailto:contacto@tramasevv.com">contacto@tramasevv.com</a>
+          <a href="tel:+525662692437">+52 56 6269 2437</a>
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="red-de-acompanamiento.html">Red de acompañamiento</a>
+        </div>
       </div>
+      <p class="site-footer__legal">Tramas Escucha a Víctimas de Violencia, A.C. Si estás en peligro inmediato, contacta a los servicios de emergencia de tu localidad.</p>
+      <p class="footer-fine">Salir de esta página no borra tu historial de navegación. <a href="navegacion-segura.html">Cómo navegar de forma más segura</a>.</p>
     </div>
-    <p style="font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin:20px 0 0;max-width:60ch;">Tramas Escucha a Víctimas de Violencia, A.C. Si estás en peligro inmediato, contacta a los servicios de emergencia de tu localidad.</p>
-    <p class="footer-fine">Salir de esta página no borra tu historial de navegación. <a href="navegacion-segura.html">Cómo navegar de forma más segura</a>.</p>
   </footer>
 </div>
+<script src="assets/nav.js"></script>
 <script src="assets/salida-segura.js"></script>
 </body>
 </html>
