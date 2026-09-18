@@ -8,7 +8,7 @@
 <meta name="description" content="Tramas Escucha a Víctimas de Violencia, A.C. Acompañamiento psicosocial, jurídico y formación para personas que han vivido violencia.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧵</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,400i&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -32,13 +32,37 @@
   </header>
 
   <main class="container">
-    <section class="section section--hero">
-      <p class="eyebrow reveal">Tramas Escucha a Víctimas de Violencia, A.C.</p>
-      <h1 class="title title--portada reveal-2">Escucha a víctimas de violencia</h1>
-      <p class="lead lead--con-aire reveal-3">Acompañamos a personas que han vivido violencia en su acceso a la justicia, en su proceso terapéutico y en la reconstrucción de su proyecto de vida.</p>
-      <div class="actions reveal-4">
-        <a class="btn btn-primary" href="servicios.html">Nuestros servicios</a>
-        <a class="btn btn-ghost" href="contacto.html">Contáctanos</a>
+    <section class="portada">
+      <p class="portada__nombre">Tramas Escucha a Víctimas de Violencia, A.C.</p>
+      <h1 class="portada__titulo">Una trama que sostiene, hilo por hilo</h1>
+
+      <div class="ico" data-icosaedro tabindex="0" role="group"
+           aria-label="Navegación sobre el icosaedro del logotipo. Usa las flechas del teclado para girarlo; las mismas secciones están en el menú superior."
+           data-destinos='[
+             {"texto":"Círculos de Formación","corto":"Formación","url":"circulos-de-formacion.html"},
+             {"texto":"Contáctanos","corto":"Contacto","url":"contacto.html"},
+             {"texto":"Red de acompañamiento","corto":"Red","url":"red-de-acompanamiento.html"},
+             null,
+             {"texto":"Qué hacemos","corto":"Servicios","url":"servicios.html"},
+             {"texto":"Quiénes somos","corto":"Nosotras","url":"quienes-somos.html"}
+           ]'>
+        <svg class="ico__svg" aria-hidden="true"></svg>
+        <div class="ico__enlaces"></div>
+      </div>
+
+      <p class="ico__pista">Arrastra con el dedo o el ratón &middot; flechas del teclado para girar</p>
+
+      <nav class="ico-respaldo" aria-label="Secciones del sitio">
+        <a href="quienes-somos.html">Quiénes somos</a>
+        <a href="servicios.html">Qué hacemos</a>
+        <a href="circulos-de-formacion.html">Círculos de Formación</a>
+        <a href="red-de-acompanamiento.html">Red de acompañamiento</a>
+        <a href="contacto.html">Contáctanos</a>
+      </nav>
+
+      <div class="actions actions--suelta">
+        <a class="btn btn-primary" href="constancias/">Verificar constancia</a>
+        <a class="btn btn-ghost" href="contacto.html">Busco acompañamiento</a>
       </div>
     </section>
 
@@ -71,11 +95,6 @@
         </div>
       </div>
     </section>
-
-    <section class="section section--final">
-      <blockquote class="quote">Una trama que sostiene, hilo por hilo, tanto a quien busca justicia como a quien se prepara para acompañar ese camino.</blockquote>
-      <a class="btn btn-ghost" href="quienes-somos.html">Quiénes somos</a>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -94,6 +113,7 @@
     </div>
   </footer>
 </div>
+<script src="assets/icosaedro.js"></script>
 <script src="assets/nav.js"></script>
 <script src="assets/salida-segura.js"></script>
 </body>

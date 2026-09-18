@@ -10,13 +10,17 @@
 :root{
   color-scheme: light;
 
+  /* Paleta tomada del logotipo (assets/logo.png), no inventada:
+     navy #16253E, rojo #C62118, olivo #627D2A, amarillo #D9D20E. */
   --color-bg:#FFFFFF;
-  --color-text:#1B2A41;
-  --color-accent:#1B2A41;
-  --color-accent-700:#0F1826;
-  --color-accent-2:#A6392C;
-  --color-accent-2-700:#8A2E23;
-  --color-divider:#E1DDD0;
+  --color-text:#16253E;
+  --color-accent:#16253E;
+  --color-accent-700:#0E1826;
+  --color-accent-2:#C62118;
+  --color-accent-2-700:#A21B13;
+  --color-olivo:#627D2A;
+  --color-amarillo:#D9D20E;
+  --color-divider:#E6EAF0;
 
   /* Texto atenuado, por niveles */
   --color-text-80:color-mix(in srgb, var(--color-text) 82%, transparent);
@@ -24,8 +28,9 @@
   --color-text-60:color-mix(in srgb, var(--color-text) 70%, transparent);
   --color-text-50:color-mix(in srgb, var(--color-text) 60%, transparent);
 
-  --font-heading:'Fraunces', Georgia, serif;
-  --font-body:'Work Sans', system-ui, -apple-system, sans-serif;
+  /* El logotipo está en una sans geométrica: la tipografía del sitio lo sigue. */
+  --font-heading:'Outfit', system-ui, sans-serif;
+  --font-body:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
   --radius-md:8px;
   --shadow-md:0 4px 14px rgba(27,42,65,0.14);
@@ -265,3 +270,57 @@ a:hover{color:var(--color-accent-700);}
   }
 }
 .card-body--rol{font-style:italic; margin:4px 0 0;}
+
+/* ---- Portada: icosaedro navegable ------------------------------------
+   El logotipo de Tramas es un icosaedro visto por un eje de orden 3, y sus
+   tramos de color forman un circuito cerrado de seis vértices. Cinco de esos
+   vértices son los enlaces del sitio; el sexto queda sin enlace.
+   La lógica está en assets/icosaedro.js. */
+.portada{padding:clamp(28px,4vw,44px) 0 clamp(32px,5vw,56px); text-align:center;}
+.portada__nombre{
+  font-weight:700; font-size:12.5px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--color-text-60); margin:0 0 14px;
+}
+.portada__titulo{
+  font-family:var(--font-heading); font-weight:700;
+  font-size:clamp(30px,5.2vw,50px); line-height:1.05; letter-spacing:-0.03em;
+  margin:0 auto; max-width:20ch;
+}
+
+.ico{
+  position:relative; width:100%; height:min(64vh,580px); margin:0 auto;
+  touch-action:none; cursor:grab; user-select:none;
+}
+.ico--arrastrando{cursor:grabbing;}
+.ico__svg{position:absolute; inset:0; width:100%; height:100%; display:block;}
+.ico__enlaces{position:absolute; inset:0;}
+.ico__nodo{
+  position:absolute; transform:translate(-50%,-50%);
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--color-bg); border:1px solid var(--color-divider);
+  border-radius:999px; padding:7px 13px 7px 9px;
+  font-family:var(--font-body); font-size:13.5px; font-weight:600;
+  color:var(--color-text); white-space:nowrap; text-decoration:none;
+  box-shadow:0 2px 8px rgba(22,37,62,0.10);
+  transition:border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.ico__nodo:hover, .ico__nodo:focus-visible{
+  color:var(--color-text); border-color:var(--color);
+  box-shadow:0 5px 16px rgba(22,37,62,0.18);
+  transform:translate(-50%,-50%) scale(1.05);
+}
+.ico__punto{width:9px; height:9px; border-radius:999px; display:block; flex:none;}
+.ico__pista{font-size:13px; color:var(--color-text-50); margin:0;}
+
+/* Sin JavaScript el objeto no se dibuja: esta lista es la navegación. */
+.ico-respaldo{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:18px;}
+.ico-respaldo a{
+  border:1px solid var(--color-divider); border-radius:999px;
+  padding:10px 18px; font-size:14.5px; font-weight:600;
+}
+.ico--activo ~ .ico-respaldo{display:none;}
+
+@media (max-width:640px){
+  .ico{height:min(58vh,460px);}
+  .ico__nodo{font-size:12.5px; padding:6px 11px 6px 8px;}
+}
