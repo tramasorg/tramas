@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "agregar": "node scripts/agregar-constancia.mjs"
+    "agregar": "node scripts/agregar-constancia.mjs",
+    "regenerar": "node scripts/regenerar-qr.mjs"
   },
   "dependencies": {
     "qrcode": "^1.5.3"

@@ -61,7 +61,7 @@ async function main() {
   const dominio = await pregunta(
     rl,
     siguienteLinea,
-    "\nURL de esta página de verificación (ej. https://josafatacosta.github.io/Tramas/constancias): "
+    "\nURL de esta página de verificación (ej. https://tramasorg.github.io/tramas/constancias): "
   );
 
   rl.close();
