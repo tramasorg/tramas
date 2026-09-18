@@ -324,3 +324,58 @@ a:hover{color:var(--color-accent-700);}
   .ico{height:min(58vh,460px);}
   .ico__nodo{font-size:12.5px; padding:6px 11px 6px 8px;}
 }
+
+/* ---- Verificador de constancias (constancias/index.html) --------------
+   Vive en una subcarpeta pero comparte esta hoja: un solo sistema visual. */
+.verificador{
+  background:var(--color-bg); border:1px solid var(--color-divider);
+  border-radius:var(--radius-md); padding:clamp(18px,3vw,26px);
+  max-width:620px; margin:0 auto; text-align:left;
+}
+/* Etiqueta que solo leen los lectores de pantalla. */
+.sr-solo{
+  position:absolute; width:1px; height:1px; overflow:hidden;
+  clip-path:inset(50%); white-space:nowrap;
+}
+.verificador__form{display:flex; gap:10px; flex-wrap:wrap;}
+.verificador__campo{
+  flex:1 1 220px; font-family:var(--font-body); font-size:16px;
+  padding:13px 14px; border:1px solid var(--color-divider);
+  border-radius:10px; background:var(--color-bg); color:var(--color-text);
+  letter-spacing:0.02em;
+}
+.verificador__campo::placeholder{color:var(--color-text-50);}
+.verificador__boton{
+  font-family:var(--font-body); font-weight:600; font-size:15px;
+  background:var(--color-accent); color:var(--color-bg);
+  border:none; padding:13px 26px; border-radius:10px; cursor:pointer;
+}
+.verificador__boton:hover{background:var(--color-accent-700);}
+.verificador__ayuda{color:var(--color-text-50); font-size:14px; margin-top:12px;}
+
+.sello{
+  margin-top:22px; border:1px solid var(--color-divider);
+  border-radius:var(--radius-md); padding:clamp(18px,3vw,26px);
+  background:var(--color-bg);
+}
+.sello__marca{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-body); font-weight:700; font-size:13px;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:8px 14px; border:2px solid var(--color-olivo); color:var(--color-olivo);
+  border-radius:999px; margin-bottom:20px;
+}
+.sello--no .sello__marca{border-color:var(--color-accent-2); color:var(--color-accent-2);}
+.sello__detalles{margin:0; display:grid; gap:14px;}
+.sello__fila{
+  display:flex; justify-content:space-between; gap:20px;
+  border-bottom:1px solid var(--color-divider); padding-bottom:12px;
+}
+.sello__fila dt{color:var(--color-text-50); font-size:13.5px; flex:none;}
+.sello__fila dd{margin:0; text-align:right; font-weight:600; font-size:15px;}
+.sello p{font-size:15.5px; line-height:1.6; color:var(--color-text-80);}
+
+@media (max-width:520px){
+  .sello__fila{flex-direction:column; gap:4px;}
+  .sello__fila dd{text-align:left;}
+}

@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light" />
-<title>Registro de Constancias — Verificación</title>
+<title>Verificar una constancia — Tramas A.C.</title>
+<meta name="description" content="Verificación pública de las constancias emitidas por Tramas Escucha a Víctimas de Violencia, A.C.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧵</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  color-scheme: light;
-  --paper:#F3F4EF;
-  --paper-card:#FFFFFF;
-  --ink:#1B2A41;
-  --ink-soft:#5B6B7F;
-  --rule:#D3D6CB;
-  --stamp:#5C6B45;
-  --brass:#A9791E;
-  --focus:#2F5E8C;
-}
-*{box-sizing:border-box;}
-html,body{margin:0;}
-body{background:var(--paper); color:var(--ink); font-family:'Work Sans', system-ui, sans-serif; line-height:1.55;}
-.wrap{max-width:640px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
-header{border-bottom:2px solid var(--ink); padding-bottom:1.1rem; margin-bottom:1.75rem;}
-h1{font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:1.6rem; margin:0 0 0.2rem;}
-header p{margin:0; color:var(--ink-soft); font-size:0.95rem;}
-.card{background:var(--paper-card); border:1px solid var(--rule); border-radius:2px; padding:1.5rem;}
-form{display:flex; gap:0.6rem;}
-input[type=text]{flex:1; font-family:'IBM Plex Mono', monospace; font-size:1rem; padding:0.6rem 0.7rem; border:1px solid var(--rule); border-radius:2px; background:var(--paper); color:var(--ink);}
-input:focus-visible, button:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
-button{font-family:'Work Sans', sans-serif; font-weight:700; font-size:0.95rem; background:var(--ink); color:var(--paper); border:none; padding:0.7rem 1.3rem; border-radius:2px; cursor:pointer;}
-.help{color:var(--ink-soft); font-size:0.85rem; margin-top:0.6rem;}
-.stamp{margin-top:1.5rem; border:1px solid var(--rule); padding:1.25rem 1.4rem; border-radius:2px; background:var(--paper-card);}
-.stamp__badge{display:inline-block; font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:0.85rem; letter-spacing:0.08em; padding:0.3rem 0.6rem; border:2px solid var(--stamp); color:var(--stamp); border-radius:2px; transform:rotate(-1.5deg); margin-bottom:1rem;}
-.stamp--no .stamp__badge{border-color:var(--ink-soft); color:var(--ink-soft);}
-.stamp__details{margin:0; display:grid; gap:0.6rem;}
-.stamp__details div{display:flex; justify-content:space-between; gap:1rem; border-bottom:1px dotted var(--rule); padding-bottom:0.4rem;}
-.stamp__details dt{color:var(--ink-soft); font-size:0.85rem;}
-.stamp__details dd{margin:0; text-align:right; font-weight:600;}
-footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); color:var(--ink-soft); font-size:0.82rem;}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <p style="margin:0 0 0.6rem;"><a href="../circulos-de-formacion.html">← Volver a Tramas A.C.</a></p>
-    <h1 id="inst-name">Registro de constancias</h1>
-    <p>Verificación pública de constancias emitidas</p>
+<div class="shell">
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="site-nav__brand" href="../index.html"><img class="site-nav__logo" src="../assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C."></a>
+        <ul class="site-nav__links">
+          <li><a href="../quienes-somos.html">Quiénes somos</a></li>
+          <li><a href="../servicios.html">Qué hacemos</a></li>
+          <li><a href="../circulos-de-formacion.html">Formación</a></li>
+          <li><a href="../red-de-acompanamiento.html">Red</a></li>
+          <li><a class="btn btn-primary" href="../contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <div class="card">
-    <form id="verify-form">
-      <input type="text" id="folio-input" placeholder="Folio, p. ej. AC-2026-0001" autocomplete="off" />
-      <button type="submit">Verificar</button>
-    </form>
-    <p class="help">Escribe el folio impreso en la constancia, o escanea el código QR del documento.</p>
-    <div id="verify-result"></div>
-  </div>
+  <main class="container">
+    <section class="section section--hero">
+      <p class="eyebrow" id="inst-name">Tramas Escucha a Víctimas de Violencia, A.C.</p>
+      <h1 class="title">Verificar una constancia</h1>
+      <p class="lead lead--con-aire">Escribe el folio impreso en el documento, o escanea su código QR, para comprobar que la constancia fue emitida por nosotros.</p>
+    </section>
 
-  <footer>Documento auténtico, emitido y respaldado por Tramas Escucha a Víctimas de Violencia, A.C.</footer>
+    <section class="section section--sin-aire-arriba section--final">
+      <div class="verificador">
+        <form class="verificador__form" id="verify-form">
+          <label class="sr-solo" for="folio-input">Folio de la constancia</label>
+          <input class="verificador__campo" type="text" id="folio-input" placeholder="TEAV-2026-0001" autocomplete="off" spellcheck="false" />
+          <button class="verificador__boton" type="submit">Verificar</button>
+        </form>
+        <p class="verificador__ayuda">El folio aparece impreso en la constancia, junto al código QR.</p>
+        <div id="verify-result"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__row">
+        <a href="../index.html"><img class="site-footer__logo" src="../assets/logo.png" alt="Tramas Escucha a Víctimas de Violencia, A.C."></a>
+        <div class="site-footer__links">
+          <a href="mailto:contacto@tramasevv.com">contacto@tramasevv.com</a>
+          <a href="tel:+525662692437">+52 56 6269 2437</a>
+          <a href="../circulos-de-formacion.html">Círculos de Formación</a>
+          <a href="../quienes-somos.html">Quiénes somos</a>
+        </div>
+      </div>
+      <p class="site-footer__legal">Documento auténtico, emitido y respaldado por Tramas Escucha a Víctimas de Violencia, A.C.</p>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -75,6 +77,10 @@ footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); co
 
   var DATA = {institucion: "", records: []};
 
+  function fila(etiqueta, valor){
+    return '<div class="sello__fila"><dt>' + etiqueta + '</dt><dd>' + escapeHtml(valor) + '</dd></div>';
+  }
+
   function renderVerify(folioRaw){
     var el = document.getElementById('verify-result');
     var folio = (folioRaw || '').trim();
@@ -84,22 +90,22 @@ footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); co
     });
     if (rec){
       el.innerHTML =
-        '<div class="stamp stamp--ok">' +
-          '<div class="stamp__badge">AUTÉNTICO</div>' +
-          '<dl class="stamp__details">' +
-            '<div><dt>Folio</dt><dd>' + escapeHtml(rec.folio) + '</dd></div>' +
-            '<div><dt>Nombre</dt><dd>' + escapeHtml(rec.nombre) + '</dd></div>' +
-            '<div><dt>Curso</dt><dd>' + escapeHtml(rec.curso) + '</dd></div>' +
-            '<div><dt>Horas</dt><dd>' + escapeHtml(rec.horas) + '</dd></div>' +
-            '<div><dt>Fecha de emisión</dt><dd>' + escapeHtml(rec.fecha) + '</dd></div>' +
-            '<div><dt>Institución</dt><dd>' + escapeHtml(DATA.institucion || 'Sin registrar') + '</dd></div>' +
+        '<div class="sello sello--ok">' +
+          '<p class="sello__marca">Auténtico</p>' +
+          '<dl class="sello__detalles">' +
+            fila('Folio', rec.folio) +
+            fila('Nombre', rec.nombre) +
+            fila('Curso', rec.curso) +
+            fila('Horas', rec.horas) +
+            fila('Fecha de emisión', rec.fecha) +
+            fila('Institución', DATA.institucion || 'Sin registrar') +
           '</dl>' +
         '</div>';
     } else {
       el.innerHTML =
-        '<div class="stamp stamp--no">' +
-          '<div class="stamp__badge">NO ENCONTRADO</div>' +
-          '<p>No existe ningún registro con el folio <span>' + escapeHtml(folio) + '</span>. Verifica que esté escrito correctamente.</p>' +
+        '<div class="sello sello--no">' +
+          '<p class="sello__marca">No encontrado</p>' +
+          '<p>No existe ningún registro con el folio <strong>' + escapeHtml(folio) + '</strong>. Verifica que esté escrito correctamente.</p>' +
         '</div>';
     }
   }
@@ -118,7 +124,7 @@ footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); co
     })
     .catch(function(){
       document.getElementById('verify-result').innerHTML =
-        '<p class="help">No se pudo cargar el registro de constancias (data.json). Verifica que el archivo exista junto a esta página.</p>';
+        '<p class="verificador__ayuda">No se pudo cargar el registro de constancias (data.json). Verifica que el archivo exista junto a esta página.</p>';
     });
 
   document.getElementById('verify-form').addEventListener('submit', function(e){
@@ -127,5 +133,6 @@ footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule); co
   });
 })();
 </script>
+<script src="../assets/nav.js"></script>
 </body>
 </html>
