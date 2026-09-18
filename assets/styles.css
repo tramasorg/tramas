@@ -70,3 +70,27 @@ nav.nav a[aria-current="page"]:not(.btn){
   header[style]{padding-left:16px !important; padding-right:16px !important;}
   main[style]{padding-left:16px !important; padding-right:16px !important;}
 }
+
+/* ---- salida rápida (botón "Salir") ---- */
+.exit{
+  position:fixed; top:16px; right:16px; z-index:50;
+  display:inline-flex; align-items:center;
+  padding:8px 16px;
+  background:var(--color-accent-2-700); color:var(--color-bg);
+  font-family:var(--font-heading); font-weight:600; font-size:12px;
+  letter-spacing:0.06em; text-transform:uppercase;
+  border-radius:var(--radius-md); box-shadow:var(--shadow-md);
+}
+.exit:hover{background:var(--color-accent-2); color:var(--color-bg);}
+.footer-fine{
+  font-size:12px; margin:8px 0 0; max-width:60ch;
+  color:color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.footer-fine a{text-decoration:underline;}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:0.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important; scroll-behavior:auto !important;
+  }
+}
