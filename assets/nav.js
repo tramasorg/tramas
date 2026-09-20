@@ -1,8 +1,11 @@
-// Menú de navegación en pantallas angostas.
+// Menú desplegable desde el logotipo.
 //
-// El menú se despliega con un botón. Sin JavaScript, la lista queda visible
-// en escritorio y oculta en móvil; por eso el botón se crea desde aquí y no
-// en el HTML: si este script no corre, no aparece un botón que no funciona.
+// El menú no ocupa la primera pantalla: en la portada la protagonista es la
+// figura del icosaedro. El logotipo hace de disparador.
+//
+// Mejora progresiva: este script marca la navegación con .site-nav--js y solo
+// entonces el CSS colapsa la lista. Si el script no corre, los enlaces quedan
+// visibles y el sitio sigue siendo navegable.
 (function(){
   "use strict";
 
@@ -10,17 +13,13 @@
   if (!nav) return;
 
   var lista = nav.querySelector(".site-nav__links");
-  if (!lista) return;
+  var boton = nav.querySelector(".site-nav__brand");
+  if (!lista || !boton) return;
 
   if (!lista.id) lista.id = "menu-principal";
-
-  var boton = document.createElement("button");
-  boton.type = "button";
-  boton.className = "site-nav__toggle";
-  boton.setAttribute("aria-expanded", "false");
   boton.setAttribute("aria-controls", lista.id);
-  boton.innerHTML = '<span class="site-nav__burger" aria-hidden="true"></span>Menú';
-  nav.insertBefore(boton, lista);
+  boton.setAttribute("aria-expanded", "false");
+
   nav.classList.add("site-nav--js");
 
   function abrir(si){
@@ -32,11 +31,11 @@
     abrir(!nav.classList.contains("site-nav--abierto"));
   });
 
-  // Cerrar al navegar con teclado fuera del menú o al tocar fuera de él.
+  // Se cierra al tocar fuera del menú.
   document.addEventListener("click", function(e){
     if (!nav.contains(e.target)) abrir(false);
   });
 
-  // Nota: Esc no cierra el menú a propósito. Esa tecla está reservada para
-  // la salida rápida (tres pulsaciones); ver assets/salida-segura.js.
+  // Nota: Esc no cierra el menú a propósito. Esa tecla está reservada para la
+  // salida rápida (tres pulsaciones); ver assets/salida-segura.js.
 })();
