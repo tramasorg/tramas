@@ -155,12 +155,13 @@
   }
 
   // ---- Elementos SVG y enlaces HTML -------------------------------------
-  var lineas = aristas.map(function (a) {
+  var esDeColor = [], estadoArista = [], estadoVertice = [];
+  var lineas = aristas.map(function (a, idx) {
     var el = document.createElementNS(NS, "line");
     var clave = a[0] < a[1] ? a[0] + "-" + a[1] : a[1] + "-" + a[0];
     var c = colorDeArista[clave];
+    esDeColor[idx] = !!c;
     el.setAttribute("stroke", c || TINTA);
-    el.setAttribute("stroke-width", c ? 3.1 : 2.4);
     el.setAttribute("stroke-linecap", "round");
     svg.appendChild(el);
     return el;
@@ -255,21 +256,49 @@
       if (caraVisible[ci]) c.forEach(function (v) { vertVisible[v] = true; });
     });
 
+    // Convención del dibujo técnico: la arista oculta no se borra, se dibuja
+    // fina y discontinua. Así la figura conserva su forma en cualquier giro,
+    // en vez de deshacerse cuando una cara deja de mirar a la cámara.
+    var trazo = Math.max(4, radio * 0.032);
     aristas.forEach(function (a, idx) {
       var visible = carasDeArista[idx].some(function (ci) { return caraVisible[ci]; });
       var el = lineas[idx];
-      el.setAttribute("opacity", visible ? e : 0);
-      if (!visible) return;
       el.setAttribute("x1", P[a[0]].x); el.setAttribute("y1", P[a[0]].y);
       el.setAttribute("x2", P[a[1]].x); el.setAttribute("y2", P[a[1]].y);
+      el.setAttribute("opacity", visible ? e : e * 0.32);
+      // El trazo solo se reescribe cuando la arista cambia de estado: en cada
+      // fotograma sería recalcular estilos 30 veces sin necesidad.
+      if (estadoArista[idx] !== visible) {
+        estadoArista[idx] = visible;
+        if (visible) {
+          el.setAttribute("stroke-width", esDeColor[idx] ? 3.1 : 2.4);
+          el.setAttribute("stroke-dasharray", "none");
+        } else {
+          el.setAttribute("stroke-width", esDeColor[idx] ? 1.8 : 1.5);
+          el.setAttribute("stroke-dasharray", trazo.toFixed(1) + " " + (trazo * 0.8).toFixed(1));
+        }
+      }
     });
 
     P.forEach(function (p, idx) {
       var el = puntos[idx];
-      el.setAttribute("opacity", vertVisible[idx] ? e : 0);
-      if (!vertVisible[idx]) return;
+      var escala = p.f * (radio / 200);
       el.setAttribute("cx", p.x); el.setAttribute("cy", p.y);
-      el.setAttribute("r", (colorDeNodo[idx] ? 7.2 : 6) * p.f * (radio / 200));
+      var vis = vertVisible[idx];
+      el.setAttribute("opacity", vis ? e : e * 0.5);
+      el.setAttribute("r", (vis ? (colorDeNodo[idx] ? 7.2 : 6) : 4.6) * escala);
+      if (estadoVertice[idx] !== vis) {
+        estadoVertice[idx] = vis;
+        if (vis) {
+          el.setAttribute("fill", TINTA);
+          el.setAttribute("stroke", "none");
+        } else {
+          // Vértice trasero: hueco, como se dibuja en geometría descriptiva.
+          el.setAttribute("fill", "#FFFFFF");
+          el.setAttribute("stroke", TINTA);
+        }
+      }
+      if (!vis) el.setAttribute("stroke-width", 1.5 * escala);
     });
 
     conEnlace.forEach(function (n, idx) {
