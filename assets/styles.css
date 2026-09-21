@@ -267,14 +267,20 @@ a:hover{color:var(--color-accent-700);}
    vértices son los enlaces del sitio; el sexto queda sin enlace.
    La lógica está en assets/icosaedro.js. */
 .portada{padding:clamp(28px,4vw,44px) 0 clamp(32px,5vw,56px); text-align:center;}
+/* El nombre de la asociación no es un pie de foto: se lee como identidad,
+   no como etiqueta. El lema sigue siendo la línea de despliegue, pero la
+   distancia entre ambos pasa de 1:4 a 1:2. */
 .portada__nombre{
-  font-weight:700; font-size:12.5px; letter-spacing:0.13em; text-transform:uppercase;
-  color:var(--color-text-60); margin:0 0 14px;
+  font-family:var(--font-heading); font-weight:600;
+  font-size:clamp(15px,2vw,21px); line-height:1.3;
+  letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--color-text); margin:0 auto 16px; max-width:30ch;
 }
 .portada__titulo{
   font-family:var(--font-heading); font-weight:700;
-  font-size:clamp(30px,5.2vw,50px); line-height:1.05; letter-spacing:-0.03em;
-  margin:0 auto; max-width:20ch;
+  font-size:clamp(26px,4.2vw,40px); line-height:1.08; letter-spacing:-0.025em;
+  color:var(--color-text-80);
+  margin:0 auto; max-width:24ch;
 }
 
 .ico{
